@@ -38,7 +38,7 @@ async fn render_as_table(data: &Vec<entities::ResourceConfig>) {
 
 	for d in data {
 		#[allow(clippy::string_to_string)]
-		let mut prefix_value = String::from(d.value.clone());
+		let mut prefix_value = d.value.clone();
 		if prefix_value.len() > 64 {
 			let (prefix, _) = d.value.split_at(64);
 			prefix_value = String::from(prefix);
@@ -59,6 +59,10 @@ async fn render_as_table(data: &Vec<entities::ResourceConfig>) {
 }
 
 pub async fn output(data: &Vec<entities::ResourceConfig>, opts: &mut options::Options) {
+	if data.is_empty() {
+		print!("");
+		return;
+	}
 	match opts.output {
 		options::OutputMode::Table => render_as_table(data).await,
 		options::OutputMode::Yaml => {

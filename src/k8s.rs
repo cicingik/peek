@@ -37,7 +37,7 @@ pub async fn get_configmaps(
 	opts: &mut Options,
 ) -> Result<(), AppError> {
 	if opts.namespace.is_none() {
-		opts.namespace = Some(String::from("default"))
+		opts.namespace = Some(String::from(client.default_namespace()))
 	}
 
 	if opts.all {

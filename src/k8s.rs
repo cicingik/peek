@@ -126,7 +126,7 @@ pub async fn get_secrets(
 			let secret_name = secret.name_any();
 
 			for (key, v) in secret.data.unwrap() {
-				let value = base64::Engine::encode(&base64::engine::general_purpose::STANDARD, v.0);
+				let value = String::from_utf8(v.clone().0).unwrap_or_default();
 				let mut found: bool = false;
 
 				if opts.key.is_some() && key.contains(&opts.key.as_ref().unwrap().to_owned()) {

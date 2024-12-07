@@ -2,6 +2,15 @@
 name = "peek"
 version = "0.1.0"
 edition = "2021"
+authors = ["cicingik <danysatyanegara@gmail.com>"]
+description = "Plugin for peeking key, value from configmaps or secrets Kubernetes resources."
+homepage = "https://github.com/cicingik/peek"
+readme = "README.md"
+keywords = ["kubernetes", "krew-plugin"]
+categories = ["development-tools", "visualization"]
+license = "MIT"
+repository = "https://github.com/cicingik/peek"
+exclude = [".github/*", ".vscode/*", "target", "bin"]
 
 [[bin]]
 name = "kubectl-peek"

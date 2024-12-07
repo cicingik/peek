@@ -5,8 +5,6 @@ permissions:
 
 on:
   push:
-    branches:
-      - feat/release
     tags:
       - v[0-9]+.*
 

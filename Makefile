@@ -28,10 +28,11 @@ fmt: fmt-dep
 analyse:
 	@cargo geiger
 
-## Install release binary to $HOME/.local/bin
-install:
-	@mkdir $$HOME/.local/bin -p
-	@cp ./target/release/kubectl-peek $$HOME/.local/bin
-
 clean:
+	@cargo clean
+
+## Install release binary to $HOME/.local/bin
+install: build
+	@mkdir -p $$HOME/.local/bin
+	@cp ./target/release/kubectl-peek $$HOME/.local/bin
 	@cargo clean

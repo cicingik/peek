@@ -3,6 +3,27 @@
   <em> Peeking key, value from configmaps or secrets resource.</em>
 </p>
 
+
+## Installation
+### Binary
+The binary name for peek is `kubectl-peek`.
+
+[Archives of precompiled binaries](https://github.com/cicingik/peek/releases/latest) for peek are available for Windows, macOS and Linux.
+```shell
+curl -LO https://github.com/cicingik/peek/releases/download/{version}/kubectl-peek-{os-arch}.tar.gz
+tar -xvzf kubectl-peek-{os-arch}.tar.gz
+mkdir -p $$HOME/.local/bin
+cp kubectl-peek $HOME/.local/bin
+```
+### Building
+peek is written in Rust, so you'll need to grab a [Rust installation](https://www.rust-lang.org/) in order to compile it. peek compiles with Rust 1.81.0 (stable) or newer.
+```shell
+git clone https://github.com/cicingik/peek.git
+cd peek
+make install
+kubectl-peek --version
+```
+
 ## Usage
 
 ```shell
@@ -24,9 +45,11 @@ Options:
   -o, --output <OUTPUT>        Format output [default: table] [possible values: table, yaml, json]
   -h, --help                   Print help
 ```
+
+
 ## Peeking
 ```shell
-⇒  k peek -n default -k MONGO_HOST -c cluster-production
+⇒  kubectl peek -n default -k MONGO_HOST -c cluster-production
   +==============+==============+=====================================+======================+==============+
   |     Kind     |  Namespace   |                Name                 |         Key          |    Value     |
   +==============+==============+=====================================+======================+==============+
@@ -41,7 +64,7 @@ Options:
 ```
 
 ```shell
-⇒  k peek -n default -k MONGO_HOST -c cluster-production -o yaml
+⇒  kubectl peek -n default -k MONGO_HOST -c cluster-production -o yaml
 - kind: Configmaps
   name: image-restoration-rest-config
   namespace: default
@@ -65,7 +88,7 @@ Options:
 ```
 
 ```shell
-⇒  k peek -n default -k MONGO_HOST -c cluster-production -o json | jq .
+⇒  kubectl peek -n default -k MONGO_HOST -c cluster-production -o json | jq .
 [
   {
     "kind": "Configmaps",

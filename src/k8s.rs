@@ -75,6 +75,12 @@ pub async fn get_configmaps(
 					found = true;
 				}
 
+				// INFO: this condition is for show all key and value from resource
+				// when key and value not declare on options
+				if opts.key.is_none() && opts.value.is_none() {
+					found = true
+				}
+
 				if found {
 					let tmp = ResourceConfig {
 						kind: "Configmaps".to_string(),
@@ -136,6 +142,12 @@ pub async fn get_secrets(
 				if opts.value.is_some() && value.contains(&opts.value.as_ref().unwrap().to_owned())
 				{
 					found = true;
+				}
+
+				// INFO: this condition is for show all key and value from resource
+				// when key and value not declare on options
+				if opts.key.is_none() && opts.value.is_none() {
+					found = true
 				}
 
 				if found {

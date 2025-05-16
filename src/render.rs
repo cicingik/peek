@@ -58,6 +58,12 @@ async fn render_as_table(data: &Vec<entities::ResourceConfig>) {
 	table.printstd();
 }
 
+async fn render_as_env(data: &Vec<entities::ResourceConfig>) {
+	for d in data {
+		println!("{}={}", d.key, d.value)
+	}
+}
+
 pub async fn output(data: &Vec<entities::ResourceConfig>, opts: &mut options::Options) {
 	if data.is_empty() {
 		print!("");
@@ -81,5 +87,6 @@ pub async fn output(data: &Vec<entities::ResourceConfig>, opts: &mut options::Op
 				}
 			};
 		}
+		options::OutputMode::Env => render_as_env(data).await,
 	}
 }

@@ -45,6 +45,7 @@ pub enum OutputMode {
 	Table,
 	Yaml,
 	Json,
+	Env,
 }
 
 impl OutputMode {
@@ -53,6 +54,7 @@ impl OutputMode {
 			Self::Table => "table",
 			Self::Yaml => "yaml",
 			Self::Json => "json",
+			Self::Env => "env",
 		}
 	}
 }

@@ -42,7 +42,7 @@ Options:
   -k, --key <KEY>              Key name data resources
   -v, --value <VALUE>          Value data resources
   -A, --all                    If present, list the requested resource(s) across all namespaces
-  -o, --output <OUTPUT>        Format output [default: table] [possible values: table, yaml, json]
+  -o, --output <OUTPUT>        Format output [default: table] [possible values: table, yaml, json, env]
   -h, --help                   Print help
 ```
 
@@ -119,7 +119,14 @@ Options:
     "value": "10.184.0.6"
   }
 ]
+```
 
+```shell
+⇒  kubectl peek -n default -k MONGO_HOST -c cluster-production -o env .
+MONGO_HOST=10.184.0.6
+KAI_MONGO_HOST=10.184.0.6
+KARIN_MONGO_HOST=10.184.0.6
+MRSATAN_MONGO_HOST=10.184.0.6
 ```
 
 ## License

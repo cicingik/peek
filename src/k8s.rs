@@ -47,9 +47,9 @@ pub async fn get_configmaps(
 	let cm_api: Api<ConfigMap> = Api::namespaced(client, opts.namespace.clone().as_ref().unwrap());
 	let mut lp = ListParams::default();
 	if opts.name.is_some() {
-		let mut resource_name = String::from("name=");
+		let mut resource_name = String::from("metadata.name=");
 		resource_name.push_str(opts.name.as_ref().unwrap());
-		lp.label_selector = Some(resource_name);
+		lp.field_selector = Some(resource_name);
 	}
 
 	let configmaps = cm_api.list(&lp).await.map_err(|cause| AppError::KubeError {
@@ -115,9 +115,9 @@ pub async fn get_secrets(
 	let sc_api: Api<Secret> = Api::namespaced(client, opts.namespace.clone().as_ref().unwrap());
 	let mut lp = ListParams::default();
 	if opts.name.is_some() {
-		let mut resource_name = String::from("name=");
+		let mut resource_name = String::from("metadata.name=");
 		resource_name.push_str(opts.name.as_ref().unwrap());
-		lp.label_selector = Some(resource_name);
+		lp.field_selector = Some(resource_name);
 	}
 
 	let secrets = sc_api.list(&lp).await.map_err(|cause| AppError::KubeError {
